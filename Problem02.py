@@ -5,3 +5,35 @@ For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120
 
 Follow-up: what if you can't use division?
 """
+def productArray(arr, n):
+
+    i, temp = 1, 1
+
+    # Allocate memory for the product array
+    # Initialize the product array as 1
+    prod = [1 for i in range(n)]
+
+    # In this loop, temp variable contains product of
+    # elements on left side excluding arr[i]
+    for i in range(n):
+        prod[i] = temp
+        temp *= arr[i]
+
+    # Initialize temp to 1 for product on right side
+    temp = 1
+
+    # In this loop, temp variable contains product of
+    # elements on right side excluding arr[i]
+    for i in range(n - 1, -1, -1):
+        prod[i] *= temp
+        temp *= arr[i]
+
+    return prod
+
+# Driver Code
+arr = [1, 2, 3, 4, 5]
+n = len(arr)
+print(productArray(arr, n))
+
+#Time Complexity: O(n)
+#Space Complexity: O(n)
